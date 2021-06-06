@@ -1,6 +1,12 @@
 ﻿@model IEnumerable<MeetingOrganizer.Models.tbl_MeetingParticipant>
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 
+
+<br />
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -11,22 +17,25 @@
             </ul>
         </div>
     </div>
-    @foreach (var item in Model)
-    {
 
 
-        <div class="col-md-4">
-            <ul class="list-group">
 
-                <li class="list-group-item">
 
+
+    <div class="col-md-4">
+        <ul class="list-group">
+            <li class="list-group-item">
+                @foreach (var item in Model)
+                {
 
                     @(item.tbl_Participant.Name) @item.tbl_Participant.Surname
 
-                </li>
-            </ul>
-        </div>
+                    @*@Html.DropDownListFor(m => m.tbl_Participant.Name, (List<SelectListItem>)ViewBag.Participants, new { @class = "form-control" })*@
 
 
-    }
+                }
+
+            </li>
+        </ul>
+    </div>
 </div>

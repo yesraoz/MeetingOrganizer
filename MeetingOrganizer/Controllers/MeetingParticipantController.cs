@@ -15,6 +15,15 @@ namespace MeetingOrganizer.Controllers
         [HttpPost]
         public ActionResult Detail(int? id)
         {
+            //var Liste = db.tbl_MeetingParticipant.Where(x => x.MeetingId == id).Select(y => y.ParticipantId).ToArray();
+
+            //List<SelectListItem> participantsList = (from participant in db.tbl_Participant.Where(x => !Liste.Contains(x.ID)).ToList()
+            //                                         select new SelectListItem()
+            //                                         {
+            //                                             Text = participant.Name + " " + participant.Surname,
+            //                                             Value = participant.ID.ToString()
+            //                                         }).ToList();
+            //ViewBag.Participants = participantsList;
 
             return PartialView(db.tbl_MeetingParticipant.Where(x => x.MeetingId == id).ToList());
         }

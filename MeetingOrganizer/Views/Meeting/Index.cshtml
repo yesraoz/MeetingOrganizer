@@ -44,10 +44,11 @@
                 <ul class="list-group">
 
                     <li class="list-group-item">
+
+                        @(item.Subject)
+
                         @Html.ActionLink("Sil", "Delete", "Meeting", new { id = item.ID }, new { @class = "btn btn-danger btn-xs" })
                         @Html.ActionLink("Düzenle", "Edit", "Meeting", new { id = item.ID }, new { @class = "btn btn-info btn-xs" })
-                        <!--  <a href="#" class="view" data-target="/Admin/ServiceDetail/@item.ID">Detay</a>-->
-                        @(item.Subject)
 
                     </li>
                 </ul>
@@ -55,10 +56,7 @@
             <div class="col-md-4">
                 <ul class="list-group">
 
-                    <li class="list-group-item">
-
-                        @*<span class="glyphicon glyphicon-calendar"> </span> @(item.Date.ToString("yyyy-MM-dd'T'HH:mm:ssZ")))*@
-                        @*<span class="glyphicon glyphicon-calendar"> </span> @(item.Date.ToString("dd. MM. yyyy"))*@
+                    <li class="list-group-item">       
                         <span class="glyphicon glyphicon-calendar"> @(String.Format("{0:dd/MM/yyyy}", item.Date)) </span>
                     </li>
                 </ul>
@@ -71,8 +69,10 @@
                         <p style="color:green">
                             @(item.StartTime)  - <b style="color:red">  @(item.EndTime) </b>
 
-                            @Html.ActionLink("Ekle", "Add", "MeetingParticipant", new { id = item.ID }, new { @class = "btn btn-success btn-xs" })
-                            <a href="#" class="view" data-target="/MeetingParticipant/Detail/@item.ID">Katılımcılar</a>
+                            @Html.ActionLink("Katılımcı Ekle", "Add", "MeetingParticipant", new { id = item.ID }, new { @class = "btn btn-primary btn-xs" })
+                            @*<a href="#" class="view" data-target="~/MeetingParticipant/Detail/@item.ID">Katılımcılar</a>*@
+                            @*@Html.ActionLink("Katılımcılar","Detail","MeetingParticipant", new { id=item.ID}, new { @class="btn btn-primary btn-xs"})*@
+                            @Html.ActionLink("Katılımcılar","Detail","MeetingParticipant", new { id=item.ID}, new { @class="btn btn-success btn-xs"})
                         </p>
                     </li>
                 </ul>
