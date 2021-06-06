@@ -1,0 +1,132 @@
+﻿@model IEnumerable<MeetingOrganizer.Models.tbl_Meeting>
+@{
+    ViewBag.Title = "Toplantılar";
+}
+<h2>Toplantılar</h2>
+
+<p>
+    @Html.ActionLink("Yeni Toplantı Oluştur", "Create", "Meeting", new { @class = "btn btn-success " })
+</p>
+
+<div class="container-fluid">
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <ul class="list-group">
+                <li class="list-group-item active">
+                    Toplantı Konusu
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <ul class="list-group">
+                <li class="list-group-item active">
+                    Toplantı Tarihi
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <ul class="list-group">
+                <li class="list-group-item active">
+                    Başlangıç Bitiş Saati
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    @foreach (var item in Model)
+    {
+        <div class="row" style="color:black">
+
+            <div class="col-md-4">
+                <ul class="list-group">
+
+                    <li class="list-group-item">
+                        @Html.ActionLink("Sil", "Delete", "Meeting", new { id = item.ID }, new { @class = "btn btn-danger btn-xs" })
+                        @Html.ActionLink("Düzenle", "Edit", "Meeting", new { id = item.ID }, new { @class = "btn btn-info btn-xs" })
+                        <!--  <a href="#" class="view" data-target="/Admin/ServiceDetail/@item.ID">Detay</a>-->
+                        @(item.Subject)
+
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <ul class="list-group">
+
+                    <li class="list-group-item">
+
+                        @*<span class="glyphicon glyphicon-calendar"> </span> @(item.Date.ToString("yyyy-MM-dd'T'HH:mm:ssZ")))*@
+                        @*<span class="glyphicon glyphicon-calendar"> </span> @(item.Date.ToString("dd. MM. yyyy"))*@
+                        <span class="glyphicon glyphicon-calendar"> @(String.Format("{0:dd/MM/yyyy}", item.Date)) </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <ul class="list-group">
+
+                    <li class="list-group-item">
+
+                        <p style="color:green">
+                            @(item.StartTime)  - <b style="color:red">  @(item.EndTime) </b>
+
+                            @Html.ActionLink("Ekle", "Add", "MeetingParticipant", new { id = item.ID }, new { @class = "btn btn-success btn-xs" })
+                            <a href="#" class="view" data-target="/MeetingParticipant/Detail/@item.ID">Katılımcılar</a>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+    }
+</div>
+<div class="modal fade" id="modelView" tabindex="-1" role="dialog" aria-labelledby="">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">x</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel"> Toplantı Detay</h4>
+            </div>
+            <form method="post">
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Kapat</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script>$(function () {
+
+        $("body").on("mouseover", ".view", function () {
+
+            var url = $(this).data("target");
+
+            $.post(url, function (data) { })
+
+                .done(function (data) {
+
+                    $("#modelView .modal-body").html(data);
+                    $("#modelView").modal("show");
+                })
+
+                .fail(function () {
+
+                    $("#modelView .modal-body").text("Error!!");
+
+                    $("#modelView").modal("show");
+                })
+
+        });
+    })</script>
+
+

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MeetingOrganizer.Models.tbl_MeetingParticipant>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="list-group">
+                <li class="list-group-item active">
+                    Katılımcılar
+                </li>
+            </ul>
+        </div>
+    </div>
+    @foreach (var item in Model)
+    {
+
+
+        <div class="col-md-4">
+            <ul class="list-group">
+
+                <li class="list-group-item">
+
+
+                    @(item.tbl_Participant.Name) @item.tbl_Participant.Surname
+
+                </li>
+            </ul>
+        </div>
+
+
+    }
+</div>

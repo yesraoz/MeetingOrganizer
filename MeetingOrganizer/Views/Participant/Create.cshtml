@@ -1,0 +1,23 @@
+﻿@model MeetingOrganizer.Models.tbl_Participant
+
+@using (Html.BeginForm())
+{
+
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">Ad </span>
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Kişi Adı", required = "required" })
+    </div>
+    <br />
+    <div class="input-group">
+        <span class="input-group-addon">Soyad </span>
+        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control", placeholder = "Kişi Soyadı", required = "required" })
+    </div>
+
+
+
+    <br />
+    <div class="input-group">
+        <input type="submit" class="btn btn-success" value="Kaydet" />
+    </div>
+}

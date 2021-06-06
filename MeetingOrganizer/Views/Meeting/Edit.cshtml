@@ -1,0 +1,39 @@
+﻿@model MeetingOrganizer.Models.tbl_Meeting
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm())
+{
+
+
+    @Html.AntiForgeryToken()
+
+    <br />
+    <div class="well">
+        <div class="input-group">
+            <span class="input-group-addon">Konusu </span>
+            @Html.TextBoxFor(x => x.Subject, new { @class = "form-control", placeholder = "Toplantı konusu", required = "required" })
+        </div>
+        <br />
+        <div class="input-group">
+            <span class="input-group-addon"> Tarihi </span>
+            @Html.TextBoxFor(x => x.Date, new { @class = "form-control", placeholder = " Tarihi", type = "date", required = "required" })
+        </div>
+        <br />
+        <div class="input-group">
+            <span class="input-group-addon">Başlangıç </span>
+            @Html.TextBoxFor(x => x.StartTime, new { @class = "form-control", type = "time", required = "required" })
+        </div>
+        <br />
+        <div class="input-group">
+            <span class="input-group-addon">Bitiş </span>
+            @Html.TextBoxFor(x => x.EndTime, new { @class = "form-control", type = "time", required = "required" })
+        </div>
+        <br />
+        <div class="input-group">
+            <input type="submit" class="btn btn-success" value="Kaydet" />
+        </div>
+        <br />
+    </div>
+}

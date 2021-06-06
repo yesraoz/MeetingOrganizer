@@ -1,0 +1,36 @@
+﻿@model MeetingOrganizer.Models.tbl_MeetingParticipant
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+@Html.ActionLink("Yeni Kişi Ekle", "Create", "Participant", null, new { @class = "btn btn-success" })
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+
+    <br />
+    <div class="form-group">
+        @Html.Label("Katılımcı Seçiniz", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(x => x.ParticipantId, (List<SelectListItem>)ViewBag.Participants, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ParticipantId, "", new { @class = "text-danger" })
+            <br />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Ekle" class="btn btn-default" />
+        </div>
+    </div>
+
+
+
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
